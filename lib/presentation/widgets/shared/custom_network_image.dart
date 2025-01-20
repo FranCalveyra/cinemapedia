@@ -3,10 +3,10 @@ import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:cinemapedia/presentation/widgets/shared/image_decoration.dart';
 import 'package:flutter/material.dart';
 
-class CustomNetworkImage extends StatelessWidget {
+class SwiperNetworkImage extends StatelessWidget {
   final Movie movie;
 
-  const CustomNetworkImage({super.key, required this.movie});
+  const SwiperNetworkImage({super.key, required this.movie});
 
   @override
   Widget build(BuildContext context) {

@@ -11,7 +11,6 @@ class CinemaAppBar extends StatefulWidget {
 }
 
 class _CinemaAppBarState extends State<CinemaAppBar> {
-  int selectedTab = 0;
 
   @override
   Widget build(BuildContext context) {

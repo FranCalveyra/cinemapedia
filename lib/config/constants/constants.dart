@@ -8,4 +8,7 @@ class Constants {
   static const blurRadius = 10.0;
   static const swiperCardBottomPadding = 30.0;
   static const movieTitleFontSize = 16.0;
+
+  static const viewPortFraction = 0.8;
+  static const scale = 0.9;
 }

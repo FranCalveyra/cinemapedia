@@ -18,7 +18,7 @@ class CinemaPediaApp extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: router,
       debugShowCheckedModeBanner: false,
-      theme: const AppTheme().getTheme(),
+      theme: const AppTheme(selectedColor: 2).getTheme(),
     );
   }
 }

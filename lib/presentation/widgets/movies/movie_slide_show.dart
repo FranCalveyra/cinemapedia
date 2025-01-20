@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 
+import '../../../config/constants/constants.dart';
 import '../../../domain/entities/movie.dart';
 import 'swiper_card.dart';
 
@@ -14,25 +15,33 @@ class MovieSlideShow extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
 
+    final edgeInsets = const EdgeInsets.only(top: 0);
+
+    final pagination = SwiperPagination(
+      margin: edgeInsets,
+      builder: DotSwiperPaginationBuilder(
+        activeColor: colors.primary,
+        color: colors.secondary,
+      ),
+    );
+
+    final swiper = Swiper(
+      viewportFraction: Constants.viewPortFraction,
+      scale: Constants.scale,
+      autoplay: true,
+      pagination: pagination ,
+      itemCount: movies.length,
+      itemBuilder: _buildSwiperCard,
+    );
 
     return SizedBox(
       height: 210,
       width: double.infinity,
-      child: Swiper(
-        viewportFraction: 0.8,
-        scale: 0.9,
-        autoplay: true,
-        pagination: SwiperPagination(
-          margin: const EdgeInsets.only(top: 0),
-          builder: DotSwiperPaginationBuilder(
-            activeColor: colors.primary,
-            color: colors.secondary
-          )
-        ),
-        itemCount: movies.length,
-        itemBuilder: (context, index) =>
-            FadeIn(child: SwiperCard(movie: movies[index])),
-      ),
+      child: swiper,
     );
+  }
+
+  Widget _buildSwiperCard(BuildContext context, int index) {
+    return FadeIn(child: SwiperCard(movie: movies[index]));
   }
 }

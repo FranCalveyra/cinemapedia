@@ -26,7 +26,7 @@ class SwiperCard extends StatelessWidget {
         decoration: decoration,
         child: ClipRRect(
           borderRadius: borderRadius,
-          child: CustomNetworkImage(movie: movie),
+          child: SwiperNetworkImage(movie: movie),
         ),
       ),
     );
