@@ -1,4 +1,5 @@
 import 'package:cinemapedia/presentation/providers/providers.dart';
+import 'package:cinemapedia/presentation/widgets/movies/movie_horizontal_listview.dart';
 import 'package:cinemapedia/presentation/widgets/movies/movie_slide_show.dart';
 import 'package:cinemapedia/presentation/widgets/shared/cinema_app_bar.dart';
 import 'package:cinemapedia/presentation/widgets/shared/custom_bottom_navigation_bar.dart';
@@ -39,6 +40,7 @@ class _HomeViewState extends ConsumerState<_HomeView> {
       children: [
         CinemaAppBar(),
         MovieSlideShow(movies: slideShowMovies),
+        MovieHorizontalListview(movies: nowPlayingMovies, title: 'Now Playing', subtitle: 'Now Playing Movies',)
       ],
     );
   }

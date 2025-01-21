@@ -11,4 +11,8 @@ class Constants {
 
   static const viewPortFraction = 0.8;
   static const scale = 0.9;
+
+  static const strokeWidth = 2.0;
+  static const cardWidth = 150.0;
+  static const cardHeight = 400.0;
 }
