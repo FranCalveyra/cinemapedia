@@ -15,4 +15,6 @@ class Constants {
   static const strokeWidth = 2.0;
   static const cardWidth = 150.0;
   static const cardHeight = 400.0;
+
+  static const movieRenderingDelay = 300;
 }
