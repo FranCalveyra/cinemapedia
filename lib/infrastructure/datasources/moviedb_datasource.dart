@@ -17,10 +17,26 @@ class MovieDBDatasource extends MovieDatasource {
 
   @override
   Future<List<Movie>> getNowPlayingByPage({int page = 1}) async {
-    final response = await dio.get("/movie/now_playing",
-    queryParameters: {
-      'page': page
-    });
+    return _getMoviesByPath("/movie/now_playing", page);
+  }
+
+  @override
+  Future<List<Movie>> getComingSoonByPage({int page = 1}) async {
+    return _getMoviesByPath("/movie/upcoming", page);
+  }
+
+  @override
+  Future<List<Movie>> getPopularByPage({int page = 1}) async {
+    return _getMoviesByPath("/movie/popular", page);
+  }
+
+  @override
+  Future<List<Movie>> getTopRatedByPage({int page = 1}) async {
+    return _getMoviesByPath("/movie/top_rated", page);
+  }
+
+  Future<List<Movie>> _getMoviesByPath(String path, int page) async {
+    final response = await dio.get(path, queryParameters: {'page': page});
     final MovieDbResponse movieDbResponse =
         MovieDbResponse.fromJson(response.data);
     final List<Movie> movies = movieDbResponse.results

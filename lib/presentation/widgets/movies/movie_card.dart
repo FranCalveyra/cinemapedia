@@ -88,26 +88,26 @@ class _Stats extends StatelessWidget {
       width: 8,
     );
 
-    return Row(
-      children: [
-        Icon(
-          Icons.star_half_outlined,
-          color: Colors.yellow.shade800,
-        ),
-        sizedBox,
-        Text(
-          HumanFormats.voteAverage(movie.voteAverage),
-          maxLines: 2,
-          style:
-              textTheme.bodyMedium?.copyWith(color: Colors.yellow.shade800),
-        ),
-        sizedBox,
-        Text(
-          HumanFormats.number(movie.popularity),
-          maxLines: 2,
-          style: textTheme.bodyMedium?.copyWith(color: Colors.black),
-        ),
-      ],
+    return SizedBox(
+      width: Constants.cardWidth,
+      child: Row(
+        children: [
+          Icon(Icons.star_half_outlined, color: Colors.yellow.shade800),
+          sizedBox,
+          Text(
+            HumanFormats.voteAverage(movie.voteAverage),
+            maxLines: 2,
+            style:
+                textTheme.bodyMedium?.copyWith(color: Colors.yellow.shade800),
+          ),
+          const Spacer(),
+          Text(
+            HumanFormats.number(movie.popularity),
+            maxLines: 2,
+            style: textTheme.bodyMedium?.copyWith(color: Colors.black),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -13,4 +13,19 @@ class MovieDbRepository extends MovieRepository{
     return await datasource.getNowPlayingByPage(page: page);
 
   }
+
+  @override
+  Future<List<Movie>> getComingSoonByPage({int page = 1}) async{
+    return await datasource.getComingSoonByPage(page: page);
+  }
+
+  @override
+  Future<List<Movie>> getPopularByPage({int page = 1}) async{
+    return await datasource.getPopularByPage(page: page);
+  }
+
+  @override
+  Future<List<Movie>> getTopRatedByPage({int page = 1}) async{
+    return await datasource.getTopRatedByPage(page: page);
+  }
 }

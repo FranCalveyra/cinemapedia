@@ -17,4 +17,5 @@ class Constants {
   static const cardHeight = 400.0;
 
   static const movieRenderingDelay = 300;
+  static const movieLoadingDelay = 1200;
 }
