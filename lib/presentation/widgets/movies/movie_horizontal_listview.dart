@@ -4,7 +4,7 @@ import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:cinemapedia/presentation/widgets/movies/movie_card.dart';
 import 'package:flutter/material.dart';
 
-class MovieHorizontalListview extends StatelessWidget {
+class MovieHorizontalListview extends StatefulWidget {
   final List<Movie> movies;
   final String? title;
   final String? subtitle;
@@ -18,18 +18,47 @@ class MovieHorizontalListview extends StatelessWidget {
       this.loadNextPage});
 
   @override
+  State<MovieHorizontalListview> createState() =>
+      _MovieHorizontalListviewState();
+}
+
+class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
+  final scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    scrollController.addListener(() {
+      if (widget.loadNextPage == null) return;
+      final currentPosition = scrollController.position.pixels;
+      final maxPosition = scrollController.position.maxScrollExtent;
+
+      if (currentPosition + 200 >= maxPosition) {
+        widget.loadNextPage!();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: Constants.cardHeight,
       child: Column(
         children: [
-          if (title != null || subtitle != null)
-            _Title(title: title, subtitle: subtitle),
+          if (widget.title != null || widget.subtitle != null)
+            _Title(title: widget.title, subtitle: widget.subtitle),
           Expanded(
               child: ListView.builder(
+            controller: scrollController,
             itemBuilder: (context, index) =>
-                FadeInRight(child: MovieCard(movie: movies[index])),
-            itemCount: movies.length,
+                FadeInRight(child: MovieCard(movie: widget.movies[index])),
+            itemCount: widget.movies.length,
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
           ))
@@ -69,7 +98,6 @@ class _Title extends StatelessWidget {
           if (title != null) Text(title!, style: titleStyle),
           spacer,
           if (subtitle != null) filledButton
-
         ],
       ),
     );
