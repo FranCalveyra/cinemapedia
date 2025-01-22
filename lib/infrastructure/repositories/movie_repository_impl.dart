@@ -3,10 +3,10 @@ import 'package:cinemapedia/domain/repositories/movies_repository.dart';
 
 import '../../domain/datasources/movies_datasource.dart';
 
-class MovieDbRepository extends MovieRepository {
+class MovieRepositoryImpl extends MovieRepository {
   final MovieDatasource datasource;
 
-  MovieDbRepository({required this.datasource});
+  MovieRepositoryImpl({required this.datasource});
 
   @override
   Future<List<Movie>> getNowPlayingByPage({int page = 1}) async {
