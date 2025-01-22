@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:cinemapedia/presentation/providers/providers.dart';
 import 'package:cinemapedia/presentation/widgets/shared/image_gradient.dart';
 import 'package:flutter/material.dart';
@@ -78,6 +79,10 @@ class _CustomSliverAppBar extends StatelessWidget {
           child: Image.network(
             movie.posterPath,
             fit: BoxFit.cover,
+            loadingBuilder: (context, child, loadingProgress) {
+              if (loadingProgress != null) return const SizedBox();
+              return FadeIn(child: child);
+            },
           ),
         ),
         ImageGradient(stops: [0.7, 1.0])

@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../config/constants/constants.dart';
 import '../../../domain/entities/movie.dart';
@@ -29,7 +30,7 @@ class MovieSlideShow extends StatelessWidget {
       viewportFraction: Constants.viewPortFraction,
       scale: Constants.scale,
       autoplay: true,
-      pagination: pagination ,
+      pagination: pagination,
       itemCount: movies.length,
       itemBuilder: _buildSwiperCard,
     );
@@ -42,6 +43,9 @@ class MovieSlideShow extends StatelessWidget {
   }
 
   Widget _buildSwiperCard(BuildContext context, int index) {
-    return FadeIn(child: SwiperCard(movie: movies[index]));
+    return GestureDetector(
+      onTap: ()=>context.push('/movie/${movies[index].id}'),
+      child: FadeIn(child: SwiperCard(movie: movies[index])),
+    );
   }
 }
