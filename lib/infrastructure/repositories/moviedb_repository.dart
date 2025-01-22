@@ -3,7 +3,7 @@ import 'package:cinemapedia/domain/repositories/movies_repository.dart';
 
 import '../../domain/datasources/movies_datasource.dart';
 
-class MovieDbRepository extends MovieRepository{
+class MovieDbRepository extends MovieRepository {
   final MovieDatasource datasource;
 
   MovieDbRepository({required this.datasource});
@@ -11,21 +11,25 @@ class MovieDbRepository extends MovieRepository{
   @override
   Future<List<Movie>> getNowPlayingByPage({int page = 1}) async {
     return await datasource.getNowPlayingByPage(page: page);
-
   }
 
   @override
-  Future<List<Movie>> getComingSoonByPage({int page = 1}) async{
+  Future<List<Movie>> getComingSoonByPage({int page = 1}) async {
     return await datasource.getComingSoonByPage(page: page);
   }
 
   @override
-  Future<List<Movie>> getPopularByPage({int page = 1}) async{
+  Future<List<Movie>> getPopularByPage({int page = 1}) async {
     return await datasource.getPopularByPage(page: page);
   }
 
   @override
-  Future<List<Movie>> getTopRatedByPage({int page = 1}) async{
+  Future<List<Movie>> getTopRatedByPage({int page = 1}) async {
     return await datasource.getTopRatedByPage(page: page);
+  }
+
+  @override
+  Future<Movie> getMovieById(String id) async {
+    return await datasource.getMovieById(id);
   }
 }

@@ -2,6 +2,7 @@ import 'package:cinemapedia/config/constants/constants.dart';
 import 'package:cinemapedia/config/helpers/human_formats.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class MovieCard extends StatelessWidget {
   final Movie movie;
@@ -10,11 +11,14 @@ class MovieCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final image = Image.network(
-      movie.posterPath,
-      fit: BoxFit.cover,
-      width: Constants.cardWidth,
-      loadingBuilder: _loadingBuilder,
+    final image = GestureDetector(
+      onTap: ()=>context.push('/movie/${movie.id}'),
+      child: Image.network(
+        movie.posterPath,
+        fit: BoxFit.cover,
+        width: Constants.cardWidth,
+        loadingBuilder: _loadingBuilder,
+      ),
     );
 
     final card = SizedBox(

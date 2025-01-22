@@ -1,4 +1,5 @@
-import 'package:cinemapedia/infrastructure/models/movie_moviedb.dart';
+import 'package:cinemapedia/infrastructure/models/moviedb/movie_moviedb.dart';
+import 'package:cinemapedia/infrastructure/models/moviedb/moviedb_details.dart';
 
 import '../../config/constants/constants.dart';
 import '../../domain/entities/movie.dart';
@@ -19,6 +20,23 @@ class MovieMapper {
         video: movieDbMovie.video,
         voteAverage: movieDbMovie.voteAverage,
         voteCount: movieDbMovie.voteCount,
+      );
+
+  static Movie movieDetailsToEntity(MovieDetails movieDetails) => Movie(
+        adult: movieDetails.adult,
+        backdropPath: _getCleanPath(movieDetails.backdropPath),
+        genreIds: movieDetails.genres.map((genre) => genre.name).toList(),
+        id: movieDetails.id,
+        originalLanguage: movieDetails.originalLanguage,
+        originalTitle: movieDetails.originalTitle,
+        overview: movieDetails.overview,
+        popularity: movieDetails.popularity,
+        posterPath: _getCleanPath(movieDetails.posterPath),
+        releaseDate: movieDetails.releaseDate,
+        title: movieDetails.title,
+        video: movieDetails.video,
+        voteAverage: movieDetails.voteAverage,
+        voteCount: movieDetails.voteCount,
       );
 }
 

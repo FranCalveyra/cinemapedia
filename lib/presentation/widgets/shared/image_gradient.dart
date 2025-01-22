@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class ImageDecoration extends StatelessWidget {
+class ImageGradient extends StatelessWidget {
   final List<Color> colors;
   final List<double> stops;
 
-  const ImageDecoration(
+  const ImageGradient(
       {super.key,
         this.colors = const [Colors.transparent, Colors.black87],
         this.stops = const [0.4, 1.0]})

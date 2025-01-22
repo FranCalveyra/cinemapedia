@@ -1,6 +1,6 @@
 import 'package:cinemapedia/config/constants/constants.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
-import 'package:cinemapedia/presentation/widgets/shared/image_decoration.dart';
+import 'package:cinemapedia/presentation/widgets/shared/image_gradient.dart';
 import 'package:flutter/material.dart';
 
 class SwiperNetworkImage extends StatelessWidget {
@@ -32,7 +32,7 @@ class SwiperNetworkImage extends StatelessWidget {
     return Stack(
       children: [
         image,
-        ImageDecoration(),
+        ImageGradient(),
         Positioned(
           bottom: 16,
           left: 16,
