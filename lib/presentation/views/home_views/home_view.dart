@@ -1,32 +1,17 @@
-import 'package:cinemapedia/presentation/providers/providers.dart';
-import 'package:cinemapedia/presentation/widgets/movies/movie_horizontal_listview.dart';
-import 'package:cinemapedia/presentation/widgets/movies/movie_slide_show.dart';
-import 'package:cinemapedia/presentation/widgets/shared/cinema_app_bar.dart';
-import 'package:cinemapedia/presentation/widgets/shared/custom_bottom_navigation_bar.dart';
-import 'package:cinemapedia/presentation/widgets/shared/full_screen_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+import '../../providers/providers.dart';
+import '../../widgets/widgets.dart';
+
+class HomeView extends ConsumerStatefulWidget {
+  const HomeView();
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: _HomeView(),
-      bottomNavigationBar: CustomBottomNavigationBar(),
-    );
-  }
+  ConsumerState<HomeView> createState() => HomeViewState();
 }
 
-class _HomeView extends ConsumerStatefulWidget {
-  const _HomeView();
-
-  @override
-  ConsumerState<_HomeView> createState() => _HomeViewState();
-}
-
-class _HomeViewState extends ConsumerState<_HomeView> {
+class HomeViewState extends ConsumerState<HomeView> {
   @override
   void initState() {
     super.initState();
@@ -50,8 +35,8 @@ class _HomeViewState extends ConsumerState<_HomeView> {
         ),
         SliverList(
             delegate: SliverChildBuilderDelegate((context, index) {
-          return _CinemaBody();
-        }, childCount: 1))
+              return _CinemaBody();
+            }, childCount: 1))
       ],
     );
   }

@@ -8,3 +8,4 @@ export 'movies/movie_card.dart';
 // Shared
 export 'shared/cinema_app_bar.dart';
 export 'shared/custom_bottom_navigation_bar.dart';
+export 'shared/full_screen_loader.dart';
