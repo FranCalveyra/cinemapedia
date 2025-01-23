@@ -1,7 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cinemapedia/presentation/widgets/movies/movie_stats.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../config/constants/constants.dart';
 import '../../../domain/entities/movie.dart';
@@ -12,7 +11,7 @@ class MovieListTile extends StatelessWidget {
     required this.movie,
     required this.onMovieSelected,
   });
-  final Function onMovieSelected;
+  final Function(BuildContext context, Movie movie) onMovieSelected;
   final Movie movie;
 
   @override
