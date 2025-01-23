@@ -1,19 +1,11 @@
 import 'package:intl/intl.dart';
 
 class HumanFormats{
-  static String number(double number){
+  static String number(double number, [int decimals = 0]){
     final formatter = NumberFormat.compactCurrency(
-      decimalDigits: 0,
+      decimalDigits: decimals,
       symbol: '',
       locale: 'en'
-    );
-    return formatter.format(number);
-  }
-  static String voteAverage(double number){
-    final formatter = NumberFormat.compactCurrency(
-        decimalDigits: 1,
-        symbol: '',
-        locale: 'en'
     );
     return formatter.format(number);
   }

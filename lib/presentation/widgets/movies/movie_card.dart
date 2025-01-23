@@ -1,8 +1,9 @@
 import 'package:cinemapedia/config/constants/constants.dart';
-import 'package:cinemapedia/config/helpers/human_formats.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+import 'movie_stats.dart';
 
 class MovieCard extends StatelessWidget {
   final Movie movie;
@@ -46,7 +47,7 @@ class MovieCard extends StatelessWidget {
       ),
     );
 
-    final stats = _Stats(movie: movie, textTheme: textTheme);
+    final stats = MovieStats(movie: movie, textTheme: textTheme);
 
     return Container(
       margin: margin,
@@ -73,45 +74,6 @@ class MovieCard extends StatelessWidget {
     final toReturn = loadingProgress != null ? progressIndicator : child;
     return Center(
       child: toReturn,
-    );
-  }
-}
-
-class _Stats extends StatelessWidget {
-  const _Stats({
-    required this.movie,
-    required this.textTheme,
-  });
-
-  final Movie movie;
-  final TextTheme textTheme;
-
-  @override
-  Widget build(BuildContext context) {
-    final sizedBox = SizedBox(
-      width: 8,
-    );
-
-    return SizedBox(
-      width: Constants.cardWidth,
-      child: Row(
-        children: [
-          Icon(Icons.star_half_outlined, color: Colors.yellow.shade800),
-          sizedBox,
-          Text(
-            HumanFormats.voteAverage(movie.voteAverage),
-            maxLines: 2,
-            style:
-                textTheme.bodyMedium?.copyWith(color: Colors.yellow.shade800),
-          ),
-          const Spacer(),
-          Text(
-            HumanFormats.number(movie.popularity),
-            maxLines: 2,
-            style: textTheme.bodyMedium?.copyWith(color: Colors.black),
-          ),
-        ],
-      ),
     );
   }
 }

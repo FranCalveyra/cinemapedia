@@ -1,7 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-
+import 'package:cinemapedia/presentation/widgets/widgets.dart';
 import '../../domain/entities/movie.dart';
 
 typedef SearchMoviesCallback = Future<List<Movie>> Function(String query);
@@ -62,9 +61,7 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
           itemCount: movies.length,
           itemBuilder: (context, index) {
             final movie = movies[index];
-            return ListTile(
-              title: Text(movie.title),
-            );
+            return MovieListTile(movie: movie, onMovieSelected: close,);
           },
         );
       },
