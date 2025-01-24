@@ -1,6 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cinemapedia/presentation/providers/providers.dart';
-import 'package:cinemapedia/presentation/widgets/shared/image_gradient.dart';
+import 'package:cinemapedia/presentation/widgets/shared/cinema_gradient.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -64,6 +64,7 @@ class _MovieScreenState extends ConsumerState<MovieScreen> {
 
 class _CustomSliverAppBar extends StatelessWidget {
   final Movie movie;
+  final bool isFavorite = false; // TODO: check whether favorite
 
   const _CustomSliverAppBar({required this.movie});
 
@@ -85,8 +86,19 @@ class _CustomSliverAppBar extends StatelessWidget {
             },
           ),
         ),
-        ImageGradient(stops: [0.7, 1.0])
+        CinemaGradient(stops: [0.9, 1.0]),
+        CinemaGradient(
+          stops: [0.0, 0.2],
+          colors: [Colors.black54, Colors.transparent],
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+        )
       ],
+    );
+
+    final toggleFavoriteButton = IconButton(
+      onPressed: _toggleFavorite,
+      icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_outline),
     );
 
     return SliverAppBar(
@@ -94,10 +106,15 @@ class _CustomSliverAppBar extends StatelessWidget {
       expandedHeight: size.height * 0.7,
       foregroundColor: Colors.white,
       shadowColor: Colors.yellow,
+      actions: [toggleFavoriteButton],
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: titlePadding,
         background: background,
       ),
     );
+  }
+
+  void _toggleFavorite() {
+    //TODO
   }
 }

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
-  const CustomBottomNavigationBar({super.key});
+  final int currentIndex;
+
+  const CustomBottomNavigationBar({super.key, required this.currentIndex});
 
   @override
   State<CustomBottomNavigationBar> createState() =>
@@ -10,12 +12,11 @@ class CustomBottomNavigationBar extends StatefulWidget {
 }
 
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
-
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       elevation: 0,
-      currentIndex: _getCurrentIndex(context),
+      currentIndex: widget.currentIndex,
       onTap: (value) => _onItemTapped(context, value),
       items: [
         BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: 'Home'),
@@ -28,13 +29,6 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   }
 
   void _onItemTapped(BuildContext context, int index) {
-    var routes = {0: "/", 1: "/categories", 2: "/favorites"};
-    context.go(routes[index] ?? "/");
-  }
-
-  int _getCurrentIndex(BuildContext context) {
-    var routes = {"/": 0, "/categories": 1, "/favorites": 2};
-    final String location = GoRouterState.of(context).uri.toString();
-    return routes[location] ?? 0;
+    context.go("/home/$index");
   }
 }
