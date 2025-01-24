@@ -1,16 +1,12 @@
 # cinemapedia
 
-A new Flutter project.
+A movie finder mobile application.
 
-## Getting Started
+## For developers
+1. Copy the `.env.template` file, add your own variables and then rename it to `.env`.
+2. Whenever making changes on any entity (which should be annotated as a `@collection`), run the following command:
 
-This project is a starting point for a Flutter application.
+```bash
+flutter pub run build_runner build
+```
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
