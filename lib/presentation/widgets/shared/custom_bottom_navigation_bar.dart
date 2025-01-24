@@ -5,35 +5,36 @@ class CustomBottomNavigationBar extends StatefulWidget {
   const CustomBottomNavigationBar({super.key});
 
   @override
-  State<CustomBottomNavigationBar> createState() => _CustomBottomNavigationBarState();
+  State<CustomBottomNavigationBar> createState() =>
+      _CustomBottomNavigationBarState();
 }
 
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
-  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       elevation: 0,
-      currentIndex: selectedIndex,
+      currentIndex: _getCurrentIndex(context),
       onTap: (value) => _onItemTapped(context, value),
       items: [
         BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: 'Home'),
-        BottomNavigationBarItem(icon: Icon(Icons.label_outline), label: 'Categories'),
-        BottomNavigationBarItem(icon: Icon(Icons.favorite_outline), label: 'Favorites'),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.label_outline), label: 'Categories'),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.favorite_outline), label: 'Favorites'),
       ],
     );
   }
 
-  void _onItemTapped(BuildContext context, int index){
-    var routes = {
-      0: "/",
-      1: "/categories",
-      2: "/favorites"
-    };
+  void _onItemTapped(BuildContext context, int index) {
+    var routes = {0: "/", 1: "/categories", 2: "/favorites"};
     context.go(routes[index] ?? "/");
-    setState(() {
-      selectedIndex = index;
-    });
+  }
+
+  int _getCurrentIndex(BuildContext context) {
+    var routes = {"/": 0, "/categories": 1, "/favorites": 2};
+    final String location = GoRouterState.of(context).uri.toString();
+    return routes[location] ?? 0;
   }
 }
