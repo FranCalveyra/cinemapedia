@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cinemapedia/presentation/providers/providers.dart';
+import 'package:cinemapedia/presentation/providers/storage/local_storage_provider.dart';
 import 'package:cinemapedia/presentation/widgets/shared/cinema_gradient.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -62,43 +63,73 @@ class _MovieScreenState extends ConsumerState<MovieScreen> {
   }
 }
 
-class _CustomSliverAppBar extends StatelessWidget {
+final isFavoriteProvider =
+    FutureProvider.family.autoDispose<bool, int>((Ref ref, int movieId) {
+  final localStorageRepository = ref.watch(localStorageRepositoryProvider);
+  return localStorageRepository.isMovieFavorite(movieId);
+});
+
+class _CustomSliverAppBar extends ConsumerWidget {
   final Movie movie;
-  final bool isFavorite = false; // TODO: check whether favorite
 
   const _CustomSliverAppBar({required this.movie});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final localStorageRepository = ref.watch(localStorageRepositoryProvider);
+
     final size = MediaQuery.of(context).size;
 
     const titlePadding = EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0);
 
+    final image = Image.network(
+      movie.posterPath,
+      fit: BoxFit.cover,
+      loadingBuilder: (context, child, loadingProgress) {
+        if (loadingProgress != null) return const SizedBox();
+        return FadeIn(child: child);
+      },
+    );
+
+    final topGradient = CinemaGradient(
+      stops: [0.0, 0.2],
+      colors: [Colors.black54, Colors.transparent],
+      begin: Alignment.topRight,
+      end: Alignment.bottomLeft,
+    );
+
+    final bottomGradient = CinemaGradient(stops: [0.9, 1.0]);
+
     final background = Stack(
       children: [
         SizedBox.expand(
-          child: Image.network(
-            movie.posterPath,
-            fit: BoxFit.cover,
-            loadingBuilder: (context, child, loadingProgress) {
-              if (loadingProgress != null) return const SizedBox();
-              return FadeIn(child: child);
-            },
-          ),
+          child: image,
         ),
-        CinemaGradient(stops: [0.9, 1.0]),
-        CinemaGradient(
-          stops: [0.0, 0.2],
-          colors: [Colors.black54, Colors.transparent],
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
-        )
+        bottomGradient,
+        topGradient,
       ],
     );
 
+    final isFavoriteFuture =
+        ref.watch(isFavoriteProvider(movie.id)); // TODO: check whether favorite
+
     final toggleFavoriteButton = IconButton(
-      onPressed: _toggleFavorite,
-      icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_outline),
+      onPressed: () {
+        localStorageRepository.toggleFavorite(movie);
+        ref.invalidate(isFavoriteProvider(movie.id));
+      },
+      icon: isFavoriteFuture.when(
+        data: (isFavorite) => isFavorite
+            ? Icon(
+                Icons.favorite,
+                color: Colors.red,
+              )
+            : Icon(Icons.favorite_outline),
+        error: (_, __) => throw UnimplementedError(),
+        loading: () => CircularProgressIndicator(
+          strokeWidth: Constants.strokeWidth,
+        ),
+      ),
     );
 
     return SliverAppBar(
@@ -112,9 +143,5 @@ class _CustomSliverAppBar extends StatelessWidget {
         background: background,
       ),
     );
-  }
-
-  void _toggleFavorite() {
-    //TODO
   }
 }
