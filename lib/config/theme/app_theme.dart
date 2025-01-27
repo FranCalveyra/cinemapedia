@@ -13,20 +13,24 @@ final List<Color> colors = [
   Colors.tealAccent
 ];
 
-
-class AppTheme{
+class AppTheme {
   final int selectedColor;
   final bool isDarkMode;
 
   const AppTheme({this.selectedColor = 0, this.isDarkMode = false});
 
-
   ThemeData getTheme() => ThemeData(
-    colorSchemeSeed: colors[selectedColor],
-    brightness: _getBrightness(),
-    useMaterial3: true,
-    typography: Typography.material2021()
-  );
+      colorSchemeSeed: colors[selectedColor],
+      brightness: _getBrightness(),
+      useMaterial3: true,
+      typography: Typography.material2021());
 
-  Brightness _getBrightness() => isDarkMode ? Brightness.dark : Brightness.light;
+  Brightness _getBrightness() =>
+      isDarkMode ? Brightness.dark : Brightness.light;
+
+  AppTheme copyWith({bool? isDarkMode}) {
+    return AppTheme(
+        selectedColor: selectedColor,
+        isDarkMode: isDarkMode ?? this.isDarkMode);
+  }
 }

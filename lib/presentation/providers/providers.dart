@@ -11,3 +11,5 @@ export 'search/search_movies_provider.dart';
 
 export 'storage/local_storage_provider.dart';
 export 'storage/favorite_movies_provider.dart';
+
+export 'theme/theme_provider.dart';

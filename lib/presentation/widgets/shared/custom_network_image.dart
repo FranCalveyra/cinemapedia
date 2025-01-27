@@ -25,7 +25,7 @@ class SwiperNetworkImage extends StatelessWidget {
 
     var text = Text(
       movie.title,
-      style: TextStyle(color: colors.surface, decorationColor: Colors.black45,
+      style: TextStyle(color: Colors.white, decorationColor: Colors.black45,
       fontSize: Constants.movieTitleFontSize),
     );
 

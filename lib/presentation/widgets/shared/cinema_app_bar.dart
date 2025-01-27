@@ -34,19 +34,24 @@ class CinemaAppBar extends ConsumerWidget {
         },
         icon: const Icon(Icons.search));
 
+    final padding = EdgeInsets.symmetric(
+      horizontal: Constants.horizontalAppBarPadding,
+    );
+
+    final cinemaButton = IconButton(icon: Icon(Icons.movie_outlined), color: colors.primary, onPressed: (){
+      ref.watch(themeNotifierProvider.notifier).toggleDarkMode();
+    },);
+
     return SafeArea(
       bottom: false,
       child: Padding(
-        padding:
-            EdgeInsets.symmetric(horizontal: Constants.horizontalAppBarPadding),
+        padding: padding,
         child: SizedBox(
           width: double.infinity,
           child: Row(
             children: [
-              Icon(Icons.movie_outlined, color: colors.primary),
-              const SizedBox(
-                width: 8,
-              ),
+              cinemaButton,
+              const SizedBox(width: 8),
               Text(
                 'Cinemapedia',
                 style: AppStyles.titleStyle(context),

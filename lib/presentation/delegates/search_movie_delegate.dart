@@ -40,6 +40,7 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
 
     return [
       StreamBuilder(
+        initialData: false,
         stream: isLoadingStream.stream,
         builder: (context, snapshot) {
           final isSearching = snapshot.data ?? false;
@@ -57,8 +58,11 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
   @override
   Widget? buildLeading(BuildContext context) {
     return IconButton(
-      icon: Icon(Icons.arrow_back_outlined),
-      onPressed: () => close(context, null),
+      icon: Icon(Icons.arrow_back_ios_new_rounded),
+      onPressed: (){
+        _clearStreams();
+        close(context, null);
+      },
     );
   }
 

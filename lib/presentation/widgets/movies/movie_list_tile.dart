@@ -11,6 +11,7 @@ class MovieListTile extends StatelessWidget {
     required this.movie,
     required this.onMovieSelected,
   });
+
   final Function(BuildContext context, Movie movie) onMovieSelected;
   final Movie movie;
 
@@ -19,9 +20,7 @@ class MovieListTile extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final textTheme = Theme.of(context).textTheme;
 
-    final spacingBox = SizedBox(
-      width: 16.0,
-    );
+    final spacingBox = SizedBox(width: 16.0);
 
     final cleanOverview = movie.overview.length > 150
         ? '${movie.overview.substring(0, 150)}...'
@@ -71,7 +70,7 @@ class MovieListTile extends StatelessWidget {
 
     return GestureDetector(
       child: padding,
-      onTap: ()=>onMovieSelected(context, movie),
+      onTap: () => onMovieSelected(context, movie),
     );
   }
 }
