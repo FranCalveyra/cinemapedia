@@ -1,3 +1,4 @@
+import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:cinemapedia/presentation/delegates/search_movie_delegate.dart';
 import 'package:cinemapedia/presentation/providers/providers.dart';
 import 'package:flutter/material.dart';
@@ -13,22 +14,25 @@ class CinemaAppBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final colors = Theme.of(context).colorScheme;
-    final searchQuery = ref.read(searchQueryProvider);
+    final searchQuery = ref.watch(searchQueryProvider);
     final searchedMovies = ref.read(searchedMoviesProvider);
 
     final searchButton = IconButton(
         onPressed: () {
-          showSearch(
-              query: searchQuery,
-              context: context,
-              delegate: SearchMovieDelegate(
-                initialMovies: searchedMovies,
-                  searchMovies: ref.read(searchedMoviesProvider.notifier).searchMoviesByQuery)).then((movie){
-                    if(movie == null) return;
-                    context.push("/home/0/movie/${movie.id}");
+          showSearch<Movie?>(
+                  query: searchQuery,
+                  context: context,
+                  delegate: SearchMovieDelegate(
+                      initialMovies: searchedMovies,
+                      searchMovies: ref
+                          .read(searchedMoviesProvider.notifier)
+                          .searchMoviesByQuery))
+              .then((movie) {
+            if (movie == null) return;
+            context.push("/home/0/movie/${movie.id}");
           });
         },
-        icon: Icon(Icons.search));
+        icon: const Icon(Icons.search));
 
     return SafeArea(
       bottom: false,

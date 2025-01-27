@@ -1,6 +1,5 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cinemapedia/presentation/providers/providers.dart';
-import 'package:cinemapedia/presentation/providers/storage/local_storage_provider.dart';
 import 'package:cinemapedia/presentation/widgets/shared/cinema_gradient.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -76,8 +75,6 @@ class _CustomSliverAppBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final localStorageRepository = ref.watch(localStorageRepositoryProvider);
-
     final size = MediaQuery.of(context).size;
 
     const titlePadding = EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0);
