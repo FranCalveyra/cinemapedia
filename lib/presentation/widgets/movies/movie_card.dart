@@ -7,8 +7,8 @@ import 'movie_stats.dart';
 
 class MovieCard extends StatelessWidget {
   final Movie movie;
-
-  const MovieCard({super.key, required this.movie});
+  final bool showInfo;
+  const MovieCard({super.key, required this.movie, this.showInfo = true});
 
   @override
   Widget build(BuildContext context) {
@@ -57,8 +57,8 @@ class MovieCard extends StatelessWidget {
         children: [
           card,
           sizedBox,
-          title,
-          stats,
+          if(showInfo)title,
+          if(showInfo) stats,
         ],
       ),
     );

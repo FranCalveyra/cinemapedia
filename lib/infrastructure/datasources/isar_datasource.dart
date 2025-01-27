@@ -21,6 +21,7 @@ class IsarDatasource extends LocalStorageDatasource {
     final isar = await db;
     final bool isAlreadyFavorite = await _movieExists(isar, movie.id);
     if (isAlreadyFavorite) {
+      if(movie.isarId == null) return;
       isar.writeTxnSync(() => isar.movies.deleteSync(movie.isarId!));
       return;
     }
