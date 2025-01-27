@@ -21,7 +21,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
       items: [
         BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: 'Home'),
         BottomNavigationBarItem(
-            icon: Icon(Icons.label_outline), label: 'Categories'),
+            icon: Icon(Icons.trending_up), label: 'Trending'),
         BottomNavigationBarItem(
             icon: Icon(Icons.favorite_outline), label: 'Favorites'),
       ],

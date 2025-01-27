@@ -73,14 +73,6 @@ class _CinemaBody extends ConsumerWidget {
           ref.read(upcomingMoviesProvider.notifier).loadNextPage(),
     );
 
-    final trendingListView = MovieHorizontalListview(
-      movies: popularMovies,
-      title: 'Trending',
-      subtitle: 'Most Popular Movies',
-      loadNextPage: () =>
-          ref.read(popularMoviesProvider.notifier).loadNextPage(),
-    );
-
     final topRatedListView = MovieHorizontalListview(
       movies: topRatedMovies,
       title: 'Top Rated',
@@ -94,7 +86,6 @@ class _CinemaBody extends ConsumerWidget {
         MovieSlideShow(movies: slideShowMovies),
         nowPlayingListView,
         comingSoonListView,
-        trendingListView,
         topRatedListView,
         SizedBox(height: 10),
       ],

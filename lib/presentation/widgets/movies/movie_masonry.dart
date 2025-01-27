@@ -44,6 +44,7 @@ class _MovieMasonryState extends State<MovieMasonry> {
     final padding = Padding(
       padding: const EdgeInsets.all(8.0),
       child: MasonryGridView.count(
+        controller: scrollController,
         crossAxisCount: 3,
         itemBuilder: (context, index) {
           final card = FadeInUp(child: _buildMovieCard(index));
