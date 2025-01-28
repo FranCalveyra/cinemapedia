@@ -44,22 +44,19 @@ class CinemaAppBar extends ConsumerWidget {
 
     return SafeArea(
       bottom: false,
-      child: Padding(
-        padding: padding,
-        child: SizedBox(
-          width: double.infinity,
-          child: Row(
-            children: [
-              cinemaButton,
-              const SizedBox(width: 8),
-              Text(
-                'Cinemapedia',
-                style: AppStyles.titleStyle(context),
-              ),
-              Spacer(),
-              searchButton
-            ],
-          ),
+      child: SizedBox(
+        width: double.infinity,
+        child: Row(
+          children: [
+            cinemaButton,
+            const SizedBox(width: 8),
+            Text(
+              'Cinemapedia',
+              style: AppStyles.titleStyle(context),
+            ),
+            Spacer(),
+            searchButton
+          ],
         ),
       ),
     );

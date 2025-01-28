@@ -71,4 +71,16 @@ class MovieDBDatasource extends MovieDatasource {
         .toList();
     return movies;
   }
+
+  @override
+  Future<List<Movie>> getSimilarMovies(int movieId) {
+    // TODO: implement getSimilarMovies
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Movie>> getYoutubeVideosById(int movieId) {
+    // TODO: implement getYoutubeVideosById
+    throw UnimplementedError();
+  }
 }
