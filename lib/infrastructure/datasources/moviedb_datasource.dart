@@ -1,4 +1,5 @@
 import 'package:cinemapedia/config/constants/environment.dart';
+import 'package:cinemapedia/domain/entities/entities.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:cinemapedia/infrastructure/mappers/movie_mapper.dart';
 import 'package:cinemapedia/infrastructure/models/moviedb/moviedb_response.dart';
@@ -79,7 +80,7 @@ class MovieDBDatasource extends MovieDatasource {
   }
 
   @override
-  Future<List<Movie>> getYoutubeVideosById(int movieId) {
+  Future<List<Video>> getYoutubeVideosById(int movieId) {
     // TODO: implement getYoutubeVideosById
     throw UnimplementedError();
   }
