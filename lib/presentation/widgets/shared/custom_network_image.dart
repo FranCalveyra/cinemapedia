@@ -21,12 +21,12 @@ class SwiperNetworkImage extends StatelessWidget {
       },
     );
 
-    var colors = Theme.of(context).colorScheme;
-
     var text = Text(
       movie.title,
-      style: TextStyle(color: Colors.white, decorationColor: Colors.black45,
-      fontSize: Constants.movieTitleFontSize),
+      style: TextStyle(
+          color: Colors.white,
+          decorationColor: Colors.black45,
+          fontSize: Constants.movieTitleFontSize),
     );
 
     return Stack(

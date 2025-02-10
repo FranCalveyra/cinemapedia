@@ -11,7 +11,8 @@ class HomeView extends ConsumerStatefulWidget {
   ConsumerState<HomeView> createState() => HomeViewState();
 }
 
-class HomeViewState extends ConsumerState<HomeView> {
+class HomeViewState extends ConsumerState<HomeView>
+    with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
     super.initState();
@@ -23,6 +24,7 @@ class HomeViewState extends ConsumerState<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return CustomScrollView(
       physics: const BouncingScrollPhysics(),
       scrollDirection: Axis.vertical,
@@ -30,16 +32,21 @@ class HomeViewState extends ConsumerState<HomeView> {
         SliverAppBar(
           floating: true,
           flexibleSpace: FlexibleSpaceBar(
-            title: const CinemaAppBar(),
+            centerTitle: true,
+            title: CinemaAppBar(),
           ),
         ),
         SliverList(
-            delegate: SliverChildBuilderDelegate((context, index) {
-              return _CinemaBody();
-            }, childCount: 1))
+            delegate: SliverChildBuilderDelegate(
+          (_, __) => _CinemaBody(),
+          childCount: 1,
+        ))
       ],
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
 class _CinemaBody extends ConsumerWidget {
@@ -48,13 +55,12 @@ class _CinemaBody extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final initialLoading = ref.watch(initialLoadingProvider);
-    if(initialLoading) return const FullScreenLoader();
+    if (initialLoading) return const FullScreenLoader();
 
     final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
     final upcomingMovies = ref.watch(upcomingMoviesProvider);
     final topRatedMovies = ref.watch(topRatedMoviesProvider);
     final slideShowMovies = ref.watch(moviesSlideShowProvider);
-
 
     final nowPlayingListView = MovieHorizontalListview(
       movies: nowPlayingMovies,
