@@ -10,3 +10,18 @@ A movie finder mobile application.
 flutter pub run build_runner build
 ```
 
+## For Production
+Change the app name for both platforms:
+```bash
+dart run change_app_package_name:main com.new.package.name
+```
+
+Only for Android:
+```bash
+dart run change_app_package_name:main com.new.package.name --android
+```
+
+And only for iOS:
+```bash
+dart run change_app_package_name:main com.new.package.name --ios
+```
