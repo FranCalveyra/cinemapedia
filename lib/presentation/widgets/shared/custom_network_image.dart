@@ -21,22 +21,24 @@ class SwiperNetworkImage extends StatelessWidget {
       },
     );
 
+    final textStyle = TextStyle(
+        color: Colors.white,
+        decorationColor: Colors.black45,
+        fontSize: Constants.movieTitleFontSize);
+
     var text = Text(
       movie.title,
-      style: TextStyle(
-          color: Colors.white,
-          decorationColor: Colors.black45,
-          fontSize: Constants.movieTitleFontSize),
+      style: textStyle,
     );
-
+    const distance = 16.0;
     return Stack(
       children: [
         image,
         CinemaGradient(),
         Positioned(
-          bottom: 16,
-          left: 16,
-          right: 16,
+          bottom: distance,
+          left: distance,
+          right: distance,
           child: text,
         )
       ],

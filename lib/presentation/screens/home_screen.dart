@@ -1,6 +1,4 @@
-import 'package:cinemapedia/presentation/views/home_views/categories_view.dart';
-import 'package:cinemapedia/presentation/views/home_views/favorites_view.dart';
-import 'package:cinemapedia/presentation/views/home_views/home_view.dart';
+import 'package:cinemapedia/presentation/views/views.dart';
 import 'package:cinemapedia/presentation/widgets/shared/custom_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 

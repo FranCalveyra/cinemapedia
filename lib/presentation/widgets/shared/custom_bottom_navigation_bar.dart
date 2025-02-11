@@ -18,17 +18,23 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
       elevation: 0,
       currentIndex: widget.currentIndex,
       onTap: (value) => _onItemTapped(context, value),
-      items: [
-        BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: 'Home'),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.trending_up), label: 'Trending'),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_outline), label: 'Favorites'),
-      ],
+      items: _buildBottomNavigationBar(),
     );
   }
-
+  
+  // Private methods
   void _onItemTapped(BuildContext context, int index) {
     context.go("/home/$index");
+  }
+
+  List<BottomNavigationBarItem> _buildBottomNavigationBar() {
+    final homeBarItem =
+        BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: 'Home');
+    final trendingBarItem = BottomNavigationBarItem(
+        icon: Icon(Icons.trending_up), label: 'Trending');
+    final favoritesBarItem = BottomNavigationBarItem(
+        icon: Icon(Icons.favorite_outline), label: 'Favorites');
+
+    return [homeBarItem, trendingBarItem, favoritesBarItem];
   }
 }

@@ -16,21 +16,22 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
 
   List<Movie> initialMovies;
 
-  SearchMovieDelegate(
-      {required this.searchMovies, this.initialMovies = const []});
+  SearchMovieDelegate({
+    required this.searchMovies,
+    this.initialMovies = const [],
+  });
 
   @override
   String? get searchFieldLabel => 'Search movie';
 
   @override
   List<Widget>? buildActions(BuildContext context) {
-    // TODO: use the correct condition for the icon
-
     final searchingIcon = SpinPerfect(
       child: Icon(Icons.refresh_rounded),
       infinite: true,
       duration: const Duration(seconds: 20),
     );
+
     final deleteAllIcon = FadeIn(
       child: IconButton(
         onPressed: () => query = '',
@@ -83,19 +84,27 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
       initialData: initialMovies,
       builder: (context, snapshot) {
         final movies = snapshot.data ?? [];
-        return ListView.builder(
-          itemCount: movies.length,
-          itemBuilder: (context, index) {
-            final movie = movies[index];
-            return MovieListTile(
-              movie: movie,
-              onMovieSelected: (context, movie) {
-                _clearStreams();
-                close(context, movie);
-              },
-            );
-          },
-        );
+        return _getListViewBuilder(movies);
+      },
+    );
+  }
+
+  ListView _getListViewBuilder(List<Movie> movies) {
+    return ListView.builder(
+      itemCount: movies.length,
+      itemBuilder: (context, index) {
+        final movie = movies[index];
+        return _buildListTile(movie);
+      },
+    );
+  }
+
+  MovieListTile _buildListTile(Movie movie) {
+    return MovieListTile(
+      movie: movie,
+      onMovieSelected: (context, movie) {
+        _clearStreams();
+        close(context, movie);
       },
     );
   }

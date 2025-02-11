@@ -1,5 +1,4 @@
-import 'package:cinemapedia/presentation/screens/home_screen.dart';
-import 'package:cinemapedia/presentation/screens/movies/movie_screen.dart';
+import 'package:cinemapedia/presentation/screens/screens.dart';
 import 'package:go_router/go_router.dart';
 
 final homeRoute = GoRoute(

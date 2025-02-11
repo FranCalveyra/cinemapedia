@@ -18,8 +18,12 @@ class CinemaAppBar extends ConsumerWidget {
     final searchedMovies = ref.read(searchedMoviesProvider);
 
     final searchButton = IconButton(
-        onPressed: () =>
-            _searchMovies(context, searchQuery, searchedMovies, ref),
+        onPressed: () => _searchMovies(
+              context: context,
+              searchQuery: searchQuery,
+              searchedMovies: searchedMovies,
+              ref: ref,
+            ),
         icon: const Icon(Icons.search));
 
     final padding = EdgeInsets.symmetric(
@@ -50,8 +54,12 @@ class CinemaAppBar extends ConsumerWidget {
     return Padding(padding: padding, child: safeArea);
   }
 
-  void _searchMovies(BuildContext context, String? searchQuery,
-      List<Movie> searchedMovies, WidgetRef ref) {
+  void _searchMovies({
+    required BuildContext context,
+    required String? searchQuery,
+    required List<Movie> searchedMovies,
+    required WidgetRef ref,
+  }) {
     showSearch<Movie?>(
             query: searchQuery,
             context: context,

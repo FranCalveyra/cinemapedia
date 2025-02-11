@@ -48,9 +48,11 @@ class _MovieScreenState extends ConsumerState<MovieScreen> {
       slivers: [
         _CustomSliverAppBar(movie: movie),
         SliverList(
-            delegate: SliverChildBuilderDelegate(
-                (context, index) => MovieDescription(movie: movie),
-                childCount: 1)),
+          delegate: SliverChildBuilderDelegate(
+            (context, index) => MovieDescription(movie: movie),
+            childCount: 1,
+          ),
+        ),
       ],
     );
 
@@ -62,12 +64,14 @@ class _MovieScreenState extends ConsumerState<MovieScreen> {
   }
 }
 
+// Provider
 final isFavoriteProvider =
     FutureProvider.family.autoDispose<bool, int>((Ref ref, int movieId) {
   final localStorageRepository = ref.watch(localStorageRepositoryProvider);
   return localStorageRepository.isMovieFavorite(movieId);
 });
 
+// Private widgets
 class _CustomSliverAppBar extends ConsumerWidget {
   final Movie movie;
 
@@ -107,7 +111,25 @@ class _CustomSliverAppBar extends ConsumerWidget {
 
     final isFavoriteFuture = ref.watch(isFavoriteProvider(movie.id));
 
-    final toggleFavoriteButton = IconButton(
+    final toggleFavButton = _getToggleFavoriteButton(ref, isFavoriteFuture);
+
+    return SliverAppBar(
+      backgroundColor: Colors.black,
+      expandedHeight: size.height * 0.7,
+      foregroundColor: Colors.white,
+      shadowColor: Colors.yellow,
+      actions: [toggleFavButton],
+      flexibleSpace: FlexibleSpaceBar(
+        titlePadding: titlePadding,
+        background: background,
+      ),
+    );
+  }
+
+  // Private methods
+  IconButton _getToggleFavoriteButton(
+      WidgetRef ref, AsyncValue<bool> isFavoriteFuture) {
+    return IconButton(
       onPressed: () async {
         await ref.read(favoriteMoviesProvider.notifier).toggleFavorite(movie);
         ref.invalidate(isFavoriteProvider(movie.id));
@@ -120,18 +142,6 @@ class _CustomSliverAppBar extends ConsumerWidget {
         loading: () => CircularProgressIndicator(
           strokeWidth: Constants.strokeWidth,
         ),
-      ),
-    );
-
-    return SliverAppBar(
-      backgroundColor: Colors.black,
-      expandedHeight: size.height * 0.7,
-      foregroundColor: Colors.white,
-      shadowColor: Colors.yellow,
-      actions: [toggleFavoriteButton],
-      flexibleSpace: FlexibleSpaceBar(
-        titlePadding: titlePadding,
-        background: background,
       ),
     );
   }
