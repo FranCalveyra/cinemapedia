@@ -36,8 +36,5 @@ class StorageMoviesNotifier extends StateNotifier<Map<int, Movie>> {
     } else {
       state = {...state, movie.id: movie};
     }
-
-
-
   }
 }

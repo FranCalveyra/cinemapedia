@@ -44,7 +44,7 @@ class MovieSlideShow extends StatelessWidget {
 
   Widget _buildSwiperCard(BuildContext context, int index) {
     return GestureDetector(
-      onTap: ()=>context.push('/home/0/movie/${movies[index].id}'),
+      onTap: () => context.push('/home/0/movie/${movies[index].id}'),
       child: FadeIn(child: SwiperCard(movie: movies[index])),
     );
   }

@@ -13,7 +13,7 @@ class MovieCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final image = GestureDetector(
-      onTap: ()=>context.push('/home/0/movie/${movie.id}'),
+      onTap: () => context.push('/home/0/movie/${movie.id}'),
       child: Image.network(
         movie.posterPath,
         fit: BoxFit.cover,
@@ -57,8 +57,8 @@ class MovieCard extends StatelessWidget {
         children: [
           card,
           sizedBox,
-          if(showInfo)title,
-          if(showInfo) stats,
+          if (showInfo) title,
+          if (showInfo) stats,
         ],
       ),
     );

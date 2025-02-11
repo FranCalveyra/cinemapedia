@@ -54,9 +54,8 @@ class ActorHorizontalList extends ConsumerWidget {
                   Text(
                     actor.character ?? "",
                     style: TextStyle(
-                      fontSize: textTheme.bodySmall!.fontSize,
-                      fontWeight: FontWeight.bold
-                    ),
+                        fontSize: textTheme.bodySmall!.fontSize,
+                        fontWeight: FontWeight.bold),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -67,9 +66,13 @@ class ActorHorizontalList extends ConsumerWidget {
     );
   }
 
-  Image _buildImage(Actor actor){
-    if(actor.profilePath == Constants.defaultProfileImagePath){
-      return Image.asset(actor.profilePath, fit: BoxFit.cover, height: 180,);
+  Image _buildImage(Actor actor) {
+    if (actor.profilePath == Constants.defaultProfileImagePath) {
+      return Image.asset(
+        actor.profilePath,
+        fit: BoxFit.cover,
+        height: 180,
+      );
     }
 
     return Image.network(actor.profilePath, fit: BoxFit.cover);

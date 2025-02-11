@@ -15,7 +15,9 @@ class MovieMapper {
         overview: movieDbMovie.overview,
         popularity: movieDbMovie.popularity,
         posterPath: _getCleanPath(movieDbMovie.posterPath),
-        releaseDate: movieDbMovie.releaseDate != null ? movieDbMovie.releaseDate! : DateTime.now(),
+        releaseDate: movieDbMovie.releaseDate != null
+            ? movieDbMovie.releaseDate!
+            : DateTime.now(),
         title: movieDbMovie.title,
         video: movieDbMovie.video,
         voteAverage: movieDbMovie.voteAverage,
@@ -32,7 +34,9 @@ class MovieMapper {
         overview: movieDetails.overview,
         popularity: movieDetails.popularity,
         posterPath: _getCleanPath(movieDetails.posterPath),
-        releaseDate: movieDetails.releaseDate != null ? movieDetails.releaseDate! : DateTime.now(),
+        releaseDate: movieDetails.releaseDate != null
+            ? movieDetails.releaseDate!
+            : DateTime.now(),
         title: movieDetails.title,
         video: movieDetails.video,
         voteAverage: movieDetails.voteAverage,

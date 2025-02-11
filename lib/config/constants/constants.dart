@@ -19,5 +19,6 @@ class Constants {
   static const movieRenderingDelay = 300;
   static const movieLoadingDelay = 1200;
 
-  static const defaultProfileImagePath = "assets/images/default-profile-image.jpg";
+  static const defaultProfileImagePath =
+      "assets/images/default-profile-image.jpg";
 }

@@ -99,16 +99,13 @@ class _CustomSliverAppBar extends ConsumerWidget {
 
     final background = Stack(
       children: [
-        SizedBox.expand(
-          child: image,
-        ),
+        SizedBox.expand(child: image),
         bottomGradient,
         topGradient,
       ],
     );
 
-    final isFavoriteFuture =
-        ref.watch(isFavoriteProvider(movie.id)); // TODO: check whether favorite
+    final isFavoriteFuture = ref.watch(isFavoriteProvider(movie.id));
 
     final toggleFavoriteButton = IconButton(
       onPressed: () async {
@@ -117,10 +114,7 @@ class _CustomSliverAppBar extends ConsumerWidget {
       },
       icon: isFavoriteFuture.when(
         data: (isFavorite) => isFavorite
-            ? Icon(
-                Icons.favorite,
-                color: Colors.red,
-              )
+            ? Icon(Icons.favorite, color: Colors.red)
             : Icon(Icons.favorite_outline),
         error: (_, __) => throw UnimplementedError(),
         loading: () => CircularProgressIndicator(
